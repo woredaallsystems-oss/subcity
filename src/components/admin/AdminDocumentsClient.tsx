@@ -23,6 +23,8 @@ export function AdminDocumentsClient({ documents }: AdminDocumentsClientProps) {
     const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
     const [expandedSubcategories, setExpandedSubcategories] = useState<Set<string>>(new Set());
     const [deletingId, setDeletingId] = useState<string | null>(null);
+    const [selectedDocuments, setSelectedDocuments] = useState<Set<string>>(new Set());
+    const [isDeleting, setIsDeleting] = useState(false);
 
     // Group documents by category and subcategory
     const groupedByCategory = documents.reduce<Record<string, Record<string, DocumentUploadRecord[]>>>((acc, doc) => {
@@ -83,29 +85,109 @@ export function AdminDocumentsClient({ documents }: AdminDocumentsClientProps) {
         }
     };
 
+    const toggleDocumentSelection = (documentId: string) => {
+        const newSelected = new Set(selectedDocuments);
+        if (newSelected.has(documentId)) {
+            newSelected.delete(documentId);
+        } else {
+            newSelected.add(documentId);
+        }
+        setSelectedDocuments(newSelected);
+    };
+
+    const toggleSelectAll = () => {
+        if (selectedDocuments.size === documents.length) {
+            setSelectedDocuments(new Set());
+        } else {
+            setSelectedDocuments(new Set(documents.map(doc => doc.id)));
+        }
+    };
+
+    const handleBulkDelete = async () => {
+        if (selectedDocuments.size === 0) {
+            alert("Please select at least one document to delete.");
+            return;
+        }
+
+        if (!confirm(`Are you sure you want to delete ${selectedDocuments.size} document(s)? This action cannot be undone.`)) {
+            return;
+        }
+
+        setIsDeleting(true);
+        try {
+            const deletePromises = Array.from(selectedDocuments).map(docId =>
+                fetch(`/api/admin/delete-document?id=${docId}`, {
+                    method: "DELETE",
+                })
+            );
+
+            await Promise.all(deletePromises);
+            window.location.reload();
+        } catch (error) {
+            console.error("Error deleting documents:", error);
+            alert("Failed to delete some documents. Please try again.");
+            setIsDeleting(false);
+        }
+    };
+
     return (
         <div className="space-y-6">
             {/* Header */}
             <section className="rounded-3xl bg-gradient-to-br from-blue-600 to-purple-700 p-6 text-white shadow-lg">
-                <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                    <div className="flex items-center gap-4">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/20">
-                            <HiDocumentText className="h-6 w-6" />
+                <div className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                        <div className="flex items-center gap-4">
+                            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/20">
+                                <HiDocumentText className="h-6 w-6" />
+                            </div>
+                            <div>
+                                <h1 className="text-2xl font-bold">All Documents</h1>
+                                <p className="text-sm text-blue-100 opacity-90">
+                                    Browse, view, and manage all uploaded documents
+                                </p>
+                            </div>
                         </div>
-                        <div>
-                            <h1 className="text-2xl font-bold">All Documents</h1>
-                            <p className="text-sm text-blue-100 opacity-90">
-                                Browse, view, and manage all uploaded documents
-                            </p>
-                        </div>
+                        <Link
+                            href="/admin/upload"
+                            className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-blue-600 transition hover:bg-blue-50"
+                        >
+                            <HiPlus className="h-5 w-5" />
+                            Upload New
+                        </Link>
                     </div>
-                    <Link
-                        href="/admin/upload"
-                        className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-blue-600 transition hover:bg-blue-50"
-                    >
-                        <HiPlus className="h-5 w-5" />
-                        Upload New
-                    </Link>
+
+                    {/* Bulk Actions */}
+                    {documents.length > 0 && (
+                        <div className="flex flex-wrap items-center gap-3 border-t border-white/20 pt-4">
+                            <button
+                                onClick={toggleSelectAll}
+                                className="inline-flex items-center gap-2 rounded-lg bg-white/10 px-4 py-2 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/20"
+                            >
+                                <input
+                                    type="checkbox"
+                                    checked={selectedDocuments.size === documents.length && documents.length > 0}
+                                    onChange={() => { }}
+                                    className="h-4 w-4 rounded border-white/30 bg-white/10 text-blue-600 focus:ring-2 focus:ring-white/50"
+                                />
+                                {selectedDocuments.size === documents.length ? "Deselect All" : "Select All"}
+                            </button>
+
+                            {selectedDocuments.size > 0 && (
+                                <button
+                                    onClick={handleBulkDelete}
+                                    disabled={isDeleting}
+                                    className="inline-flex items-center gap-2 rounded-lg bg-red-500 px-4 py-2 text-sm font-bold text-white transition hover:bg-red-600 disabled:opacity-50"
+                                >
+                                    <HiTrash className="h-4 w-4" />
+                                    Delete Selected ({selectedDocuments.size})
+                                </button>
+                            )}
+
+                            <span className="text-sm text-blue-100">
+                                {documents.length} total document{documents.length !== 1 ? "s" : ""}
+                            </span>
+                        </div>
+                    )}
                 </div>
             </section>
 
@@ -221,6 +303,12 @@ export function AdminDocumentsClient({ documents }: AdminDocumentsClientProps) {
                                                                                     className="group flex flex-col gap-4 rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition-all hover:border-blue-200 hover:shadow-md sm:flex-row sm:items-center sm:justify-between"
                                                                                 >
                                                                                     <div className="flex items-start gap-3 min-w-0 w-full">
+                                                                                        <input
+                                                                                            type="checkbox"
+                                                                                            checked={selectedDocuments.has(document.id)}
+                                                                                            onChange={() => toggleDocumentSelection(document.id)}
+                                                                                            className="mt-2 h-5 w-5 flex-shrink-0 rounded border-slate-300 text-blue-600 focus:ring-2 focus:ring-blue-500"
+                                                                                        />
                                                                                         <div className="mt-1 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                                                                                             <HiDocumentText className="h-5 w-5" />
                                                                                         </div>
