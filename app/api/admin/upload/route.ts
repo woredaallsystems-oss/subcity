@@ -32,8 +32,12 @@ export async function POST(request: Request) {
     const woredaId = await getCurrentUserWoredaId();
     // Use raw filename for storage key to ensure consistency
     // We will handle URL encoding when generating the public URL
-    // Sanitize filename to remove spaces (replace with underscore)
-    const safeName = file.name.replace(/\s+/g, '_');
+    // Aggressively sanitize filename: keep only alphanumeric, dots, hyphens, underscores
+    const originalName = file.name || "unknown_file";
+    const safeName = originalName.replace(/[^a-zA-Z0-9.\-_]/g, '_');
+
+    console.log("Sanitized filename:", { originalName, safeName });
+
     const folderPath = `${woredaId}/${categoryId}/${subcategoryCode}/${year}/${safeName}`;
 
     console.log("Uploading to Supabase Storage:", folderPath);
