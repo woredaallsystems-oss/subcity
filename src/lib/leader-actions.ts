@@ -11,7 +11,7 @@ export async function getLeaders(): Promise<LeaderRecord[]> {
     const supabase = await getSupabaseServerClient();
     const woredaId = publicEnv.NEXT_PUBLIC_WOREDA_ID;
     // #region agent log
-    fetch('http://127.0.0.1:7244/ingest/fc0a35e4-d777-4627-b1d5-a657a6abd381',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'src/lib/leader-actions.ts:12',message:'getLeaders called',data:{woredaId},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+    fetch('http://127.0.0.1:7244/ingest/fc0a35e4-d777-4627-b1d5-a657a6abd381', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ location: 'src/lib/leader-actions.ts:12', message: 'getLeaders called', data: { woredaId }, timestamp: Date.now(), sessionId: 'debug-session', runId: 'run1', hypothesisId: 'A' }) }).catch(() => { });
     // #endregion
 
     const { data, error } = await supabase
@@ -20,7 +20,7 @@ export async function getLeaders(): Promise<LeaderRecord[]> {
         .eq("woreda_id", woredaId)
         .order("sort_order", { ascending: true });
     // #region agent log
-    fetch('http://127.0.0.1:7244/ingest/fc0a35e4-d777-4627-b1d5-a657a6abd381',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'src/lib/leader-actions.ts:19',message:'Leaders query result',data:{hasError:!!error,errorMessage:error?.message,dataCount:data?.length,firstItemWoredaId:data?.[0]?.woreda_id,allWoredaIds:data?.map((d:any)=>d.woreda_id)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A,B,D'})}).catch(()=>{});
+    fetch('http://127.0.0.1:7244/ingest/fc0a35e4-d777-4627-b1d5-a657a6abd381', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ location: 'src/lib/leader-actions.ts:19', message: 'Leaders query result', data: { hasError: !!error, errorMessage: error?.message, dataCount: data?.length, firstItemWoredaId: data?.[0]?.woreda_id, allWoredaIds: data?.map((d: any) => d.woreda_id) }, timestamp: Date.now(), sessionId: 'debug-session', runId: 'run1', hypothesisId: 'A,B,D' }) }).catch(() => { });
     // #endregion
 
     if (error) {
@@ -38,6 +38,8 @@ export async function getAdminLeaders(): Promise<LeaderRecord[]> {
     const supabase = await getSupabaseServerClient();
     const woredaId = await getCurrentUserWoredaId();
 
+    console.log(`[getAdminLeaders] Fetching leaders for woredaId: ${woredaId}`);
+
     const { data, error } = await supabase
         .from("leaders")
         .select("*")
@@ -50,6 +52,7 @@ export async function getAdminLeaders(): Promise<LeaderRecord[]> {
         return [];
     }
 
+    console.log(`[getAdminLeaders] Found ${data?.length} leaders`);
     return (data as LeaderRecord[]) || [];
 }
 

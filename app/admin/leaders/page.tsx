@@ -4,10 +4,20 @@ import { getAdminLeaders, deleteLeader } from "@/lib/leader-actions";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { HiPlus, HiPencilSquare, HiTrash, HiUser } from "react-icons/hi2";
 import { revalidatePath } from "next/cache";
+import { getTranslations } from "next-intl/server";
 
 export const dynamic = "force-dynamic";
 
+const categoryKeyMap: Record<string, string> = {
+    'principal': 'catPrincipal',
+    'commission-committee': 'catCommission',
+    'management': 'catManagement',
+    'work-leadership': 'catWorkList',
+    'monitoring-committees': 'catMonitoring',
+};
+
 export default async function AdminLeadersPage() {
+    const t = await getTranslations('admin');
     const leaders = await getAdminLeaders();
 
     async function deleteLeaderAction(formData: FormData) {
@@ -49,8 +59,8 @@ export default async function AdminLeadersPage() {
                                 <h3 className="font-bold text-lg">{leader.name}</h3>
                                 <p className="text-sm opacity-90">{leader.title}</p>
                             </div>
-                            <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                                {leader.category.replace(/-/g, ' ')}
+                            <div className="absolute min-w-max top-4 right-4 bg-white/90 backdrop-blur-md text-slate-900 text-xs font-bold px-3 py-1 rounded-full shadow-lg border border-slate-200/50">
+                                {categoryKeyMap[leader.category] ? t(categoryKeyMap[leader.category] as any) : leader.category.replace(/-/g, ' ')}
                             </div>
                         </div>
 
