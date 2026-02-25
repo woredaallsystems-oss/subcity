@@ -6,7 +6,7 @@
         "loading": "በመጫን ላይ...",
         "error": "ስህተት",
         "success": "ተሳክቷል",
-        "officialPortal": "ኦፊሴላዊ መግቢያ"
+        "officialPortal": ""
     },
     "admin": {
         "secureAdminPortal": "ደህንነት ያለው የአስተዳዳሪ መግቢያ",
@@ -23,9 +23,9 @@
         "verifying": "በመረጋገጥ ላይ...",
         "signIn": "ግባ",
         "protectedMessage": "በደህንነት የተመሰጠረ ኢንክሪፕሽን የተጠበቀ። ያልተፈቀደ መዳረሻ የተከለከለ ነው።",
-        "administrator": "ኮሚሽን ፅ/ቤት ሀላፊ",
+        "administrator": "ተቆጣጣሪ",
         "dashboardWelcome": "ዳሽቦርድ",
-        "dashboardDescription": "ሰነዶችን ያቀናብሩ፣ የመዳረሻ ጥያቄዎችን ያጸድቁ፣ እና የክፍለ ከተማ ስራዎችን ከተቀናጠደ ደህንነት ያለው ዳሽቦርድ ያቆጣጠሩ።",
+        "dashboardDescription": "ሰነዶችን ያቀናብሩ፣ የመዳረሻ ጥያቄዎችን ያጸድቁ፣ እና የክፍለ ከተማ ስራዎችን ከተጠናከረ ደህንነት ባለው ዳሽቦርድ ይቆጣጠሩ።",
         "systemOnline": "ስርዓቱ የሚሰራ ነው",
         "pending": "በመጠባበቅ ላይ",
         "approved": "ጸድቋል",
@@ -138,7 +138,7 @@
         "sortOrder": "ቅደም ተከተል",
         "catPrincipal": "በአ/ ቃ/ክ/ብ/ኢ/ስ/ ኮሚሽን ሰብሳቢ",
         "catCommission": "በአ/ ቃ/ክ/ብ/ኢ/ስ/ ኮሚሽን ም/ሰብሳቢ",
-        "catManagement": "በአ/ ቃ/ክ/ብ/ኢ/ስ/ ኮሚሽን ሰብሳቢ ፀሀፊ",
+        "catManagement": "በአ/ ቃ/ክ/ብ/ኢ/ስ/ ኮሚሽን ፀሀፊ",
         "catWorkList": "በአ/ ቃ/ክ/ብ/ኢ/ስ/ ኮሚሽን ኮሚቴ አባላት",
         "catMonitoring": "በአ/ ቃ/ክ/ብ/ኢ/ስ/ ኮሚሽን ስራ አመራር አባላት",
         "leaderSaved": "አባሉ በተሳካ ሁኔታ ተቀምጧል!",
@@ -154,14 +154,14 @@
     },
     "hero": {
         "title": "የተቀናጀ፣ ግልጽ፣ ተጠያቂ።",
-        "subtitle": "የብልጽግና  የኢንስፔክሽንና የሥነምግባር ኮሚሽን",
+        "subtitle": "የአቃቂ ቃሊቲ ክ/ከተማ ብልጽግና የኢንስፔክሽንና የስነ ምግባር ኮሚሽን ፅ/ቤት",
         "description": "በትምህርት፣ ጤና እና እቅድ ዘርፎች ላይ የተከበረ አገልግሎት፣ ሆን ተብሎ የተደረገ እቅድ እና ተጠያቂነት ያለው ግንኙነት እናቀርባለን።",
         "viewMembers": "አባላትን ይመልከቱ",
         "leadersMessage": "ቀጠሮ",
         "appointment": "ቀጠሮ",
-        "subtitleText": "ጠንካራ ኮሚሽን ለጠንካራ ፖርቲ!",
+        "subtitleText": "ጠንካራ ኢንስፔክሽን ለጠንካራ ፖርቲ",
         "mainTitle": "የአቃቂ ቃሊቲ ክ/ከተማ ብልጽግና የኢንስፔክሽንና የስነ ምግባር ኮሚሽን ፅ/ቤት",
-        "badgeText": "የአቃቂ ቃሊቲ ክ/ከተማ ብልጽግና"
+        "badgeText": "የአቃቂ ቃሊቲ ክ/ከተማ ኢንስፔክሽን"
     },
     "leaders": {
         "messageFrom": "ከአስተዳዳሪው መልእክት",
@@ -285,7 +285,7 @@
         "health": "ጤና",
         "community": "ማህበረሰብ",
         "copyright": "አስተዳደር",
-        "officialGovernmentPortal": "ኦፊሴላዊ የመንግስት መግቢያ",
+        "officialGovernmentPortal": "",
         "privacy": "ግላዊነት",
         "terms": "ውሎች",
         "allRightsReserved": "ሁሉም መብቶች የተጠበቁ ናቸው"

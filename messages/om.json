@@ -133,7 +133,7 @@
         "sortOrder": "Tartiiba",
         "catPrincipal": "Sebsâbi Komishinii",
         "catCommission": "M/Sebsâbi Komishinii",
-        "catManagement": "Barreessaa Sebsâbi Komishinii",
+        "catManagement": "Barreessaa Komishinii",
         "catWorkList": "Miseensota Koree Komishinii",
         "catMonitoring": "Miseensota Hoggantoota Hojii Komishinii",
         "leaderSaved": "Miseensi milkaa'inaan kuufame!",
@@ -154,7 +154,7 @@
         "viewMembers": "Hirmaattoota Ilaali",
         "leadersMessage": "Beellama",
         "appointment": "Beellama",
-        "subtitleText": "Komishinii cimaa Paartii cimaaaf!",
+        "subtitleText": "Inspeekshinii cimaa Paartii cimaaaf!",
         "mainTitle": "Akaki Magaalaa Gidduu Bilisummaa Inspeekshinii fi Seenaa Mijigbaa Komishinii Mana Barumsaa",
         "badgeText": "Akaki Magaalaa Gidduu Bilisummaa"
     },

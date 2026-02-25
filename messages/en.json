@@ -138,7 +138,7 @@
         "sortOrder": "Sort Order",
         "catPrincipal": "Commission Chair (Sebsâbi)",
         "catCommission": "Commission Vice-Chair (M/Sebsâbi)",
-        "catManagement": "Commission Secretary (Sebsâbi Tsähafi)",
+        "catManagement": "Commission Secretary",
         "catWorkList": "Commission Committee Members",
         "catMonitoring": "Commission Management Members",
         "leaderSaved": "Member saved successfully!",
@@ -154,11 +154,11 @@
     },
     "hero": {
         "title": "Coordinated, Transparent, Accountable.",
-        "subtitle": "የብልጽግና  የኢንስፔክሽንና የሥነምግባር ኮሚሽን",
+        "subtitle": "የአቃቂ ቃሊቲ ክ/ከተማ ብልጽግና የኢንስፔክሽንና የስነ ምግባር ኮሚሽን ፅ/ቤት",
         "description": "We deliver dignified services, deliberate planning, and responsible communication across education, health, and planning portfolios.",
         "viewMembers": "View Members",
         "leadersMessage": "Leader's Message",
-        "subtitleText": "Strong Commission for a Strong Party!",
+        "subtitleText": "Strong Inspection for a Strong Party!",
         "mainTitle": "Akaki Sub-city Good Governance Inspection and Ethics Commission Office",
         "badgeText": "Akaki Sub-city Good Governance"
     },
