@@ -25,7 +25,7 @@ export function Navbar() {
                     </div>
                     <div>
                         <span className="block text-sm font-bold text-slate-900">
-                            {publicEnv.NEXT_PUBLIC_WOREDA_NAME}
+                            የአቃቂ ቃሊቲ ክ/ከተማ ብልጽግና የኢንስፔክሽንና የስነ ምግባር ኮሚሽን ፅ/ቤት
                         </span>
                         <span className="block text-xs text-slate-500">{t('common.officialPortal')}</span>
                         {/* Motto - Mobile */}

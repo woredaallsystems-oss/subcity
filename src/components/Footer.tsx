@@ -14,7 +14,7 @@ export function Footer({ woredaName }: FooterProps) {
       <div className="mx-auto max-w-7xl px-6 flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="text-center md:text-left">
           <p className="text-sm font-bold uppercase tracking-widest text-slate-900">
-            {woredaName}
+            የአቃቂ ቃሊቲ ክ/ከተማ ብልጽግና የኢንስፔክሽንና የስነ ምግባር ኮሚሽን ፅ/ቤት
           </p>
           <p className="text-xs text-slate-500 mt-1">
             {t('officialGovernmentPortal')}
